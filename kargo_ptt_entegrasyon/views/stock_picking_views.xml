@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_ptt" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.ptt</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_send_to_ptt" string="PTT'ye Gönder" type="object" class="oe_highlight" invisible="state != 'done'"/>
+            </xpath>
+            <xpath expr="//page[@name='extra']" position="after">
+                <page string="PTT Kargo" name="ptt_kargo">
+                    <group>
+                        <group>
+                            <field name="ptt_barcode"/>
+                            <field name="ptt_tracking_number"/>
+                        </group>
+                        <group>
+                            <field name="ptt_status"/>
+                            <field name="ptt_error_message" invisible="ptt_status != 'error'"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

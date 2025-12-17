@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ptt" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.ptt</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="PTT Kargo" string="PTT Kargo" name="kargo_ptt_entegrasyon">
+                    <block title="API Ayarları" name="ptt_settings_block">
+                        <setting string="PTT API Giriş" help="PTT'den aldığınız API kullanıcı bilgilerini giriniz.">
+                            <field name="ptt_api_user" placeholder="Kullanıcı Adı"/>
+                            <field name="ptt_api_password" password="True" placeholder="Şifre"/>
+                            <field name="ptt_customer_id" placeholder="Müşteri No"/>
+                        </setting>
+                        <setting string="Barkod Ayarları" help="Otomatik barkod üretimi için başlangıç değeri.">
+                            <field name="ptt_barcode_start" placeholder="Örn: 2700000000001"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

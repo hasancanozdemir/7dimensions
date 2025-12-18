@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_sevend_root"
+              name="7D Yazışmalar"
+              web_icon="sevend_yazismalar,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="menu_sevend_correspondence"
+              name="Yazışmalar"
+              parent="menu_sevend_root"
+              action="action_sevend_correspondence"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_correspondence_tree" model="ir.ui.view">
+        <field name="name">sevend.correspondence.tree</field>
+        <field name="model">sevend.correspondence</field>
+        <field name="arch" type="xml">
+            <list string="Yazışmalar">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="type" widget="badge" decoration-info="type == 'incoming'" decoration-warning="type == 'outgoing'"/>
+                <field name="subject"/>
+                <field name="recipient_name"/>
+                <field name="state" widget="badge" decoration-success="state == 'sent'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_correspondence_kanban" model="ir.ui.view">
+        <field name="name">sevend.correspondence.kanban</field>
+        <field name="model">sevend.correspondence</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="type" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="type"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <div class="text-muted">
+                                    <field name="date"/>
+                                </div>
+                                <div t-if="record.subject.raw_value">
+                                    <field name="subject"/>
+                                </div>
+                                <div class="mt-2">
+                                    <span t-attf-class="badge badge-#{record.state.raw_value == 'draft' ? 'warning' : 'info'}">
+                                        <field name="state"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_correspondence_form" model="ir.ui.view">
+        <field name="name">sevend.correspondence.form</field>
+        <field name="model">sevend.correspondence</field>
+        <field name="arch" type="xml">
+            <form string="Yazışma Detayı">
+                <header>
+                    <button name="action_post" string="Onayla / Gönder" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_reply" string="Cevap Yaz" type="object" class="btn-info" invisible="type != 'incoming'"/>
+                    <button name="action_draft" string="Taslağa Al" type="object" invisible="state == 'draft'"/>
+                    <button name="action_send_mail" string="E-Mail Gönder" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,replied"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <span class="o_form_label">Referans ID</span>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Genel Bilgiler">
+                            <field name="type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <field name="date"/>
+                            <field name="project_code"/>
+                            <field name="series"/>
+                        </group>
+                        <group string="Doküman &amp; Kurum Bilgisi">
+                            <field name="department"/>
+                            <field name="document_number"/>
+                            <field name="branch"/>
+                            <field name="recipient_name"/>
+                            <field name="recipient_email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="İçerik (TR)">
+                            <group>
+                                <field name="subject"/>
+                                <field name="content" widget="html" options="{'style-inline': true}"/>
+                                <field name="content_2" widget="html" options="{'style-inline': true}"/>
+                            </group>
+                        </page>
+                        <page string="İçerik (EN)">
+                            <group>
+                                <field name="subject_en"/>
+                                <field name="content_en" widget="html" options="{'style-inline': true}"/>
+                                <field name="content_2_en" widget="html" options="{'style-inline': true}"/>
+                            </group>
+                        </page>
+                        <page string="İmza ve İlgi">
+                            <group>
+                                <group string="İmza Makamı">
+                                    <field name="full_name"/>
+                                    <field name="job_title"/>
+                                    <field name="job_title_en"/>
+                                </group>
+                                <group string="İlgi Menüsü">
+                                    <field name="reference_ids" widget="many2many_tags"/>
+                                    <field name="reference_text"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Dosyalar &amp; Ekler">
+                            <group>
+                                <group>
+                                    <field name="sharepoint_link" widget="url"/>
+                                    <field name="pdf_url" widget="url"/>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                </group>
+                                <group>
+                                    <field name="visual" widget="image" class="oe_avatar" string="Birincil Görsel"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter>
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </chatter>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_correspondence_search" model="ir.ui.view">
+        <field name="name">sevend.correspondence.search</field>
+        <field name="model">sevend.correspondence</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="partner_id"/>
+                <filter string="Gelen" name="filter_incoming" domain="[('type', '=', 'incoming')]"/>
+                <filter string="Giden" name="filter_outgoing" domain="[('type', '=', 'outgoing')]"/>
+                <filter string="Taslak" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_sevend_correspondence" model="ir.actions.act_window">
+        <field name="name">Yazışmalar</field>
+        <field name="res_model">sevend.correspondence</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                İlk yazışmanızı oluşturun!
+            </p>
+        </field>
+    </record>
+</odoo>

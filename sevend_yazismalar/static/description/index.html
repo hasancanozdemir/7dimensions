@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --primary: #0046ad;
+            --secondary: #6c5ce7;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --accent: #00d2d3;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 40px;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .badge-container {
+            margin-top: 30px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin: 0 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 15px;
+            background: rgba(0, 210, 211, 0.1);
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 30px;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>7D Yazışmalar</h1>
+            <p>Kurumsal resmi yazışmalarınızı (Gelen/Giden) tek bir merkezden yönetin, arşivleyin ve
+                profesyonelleştirin.</p>
+            <div class="badge-container">
+                <span class="badge">Odoo 19.0 Hazır</span>
+                <span class="badge">Gelen & Giden Takibi</span>
+                <span class="badge">Resmi PDF Çıktısı</span>
+                <span class="badge">Versiyon: 19.0.1.0.2</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✨ Temel Özellikler</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📂 Dijital Arşivleme</h3>
+                    <p>Tüm gelen ve giden yazışmalarınızı saniyeler içinde kaydedin. Kurumsal hafızanızı dijital ortamda
+                        güvenle saklayın.</p>
+                </div>
+                <div class="card">
+                    <h3>📄 Akıllı "Cevapla" Akışı</h3>
+                    <p>Gelen bir yazıya tek tuşla cevap oluşturun. İlişkili kayıtlar, konular ve referanslar otomatik
+                        olarak bağlanır.</p>
+                </div>
+                <div class="card">
+                    <h3>🌐 Çoklu Dil Desteği</h3>
+                    <p>Resmi yazılarınızı hem Türkçe hem de İngilizce hazırlayın. Konu ve içerik alanları için ayrı
+                        sekmeler mevcuttur.</p>
+                </div>
+                <div class="card">
+                    <h3>🖨️ Profesyonel PDF Modu</h3>
+                    <p>Odoo'da hazırladığınız taslakları resmi antetli kağıt formatında PDF olarak indirin ve gönderin.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>🔗 İlgi (Reference) Yönetimi</h3>
+                    <p>Yazılarınızın başka hangi yazılarla ilişkili olduğunu (İLGİ) teknik olarak bağlayın ve takip
+                        edin.</p>
+                </div>
+                <div class="card">
+                    <h3>☁️ Sharepoint & Ek dosyalar</h3>
+                    <p>Dosyalarınızı Sharepoint üzerinden linkleyin veya direkt Odoo içine sınırsız ek (attachment)
+                        olarak yükleyin.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Neden 7D Yazışmalar?</h2>
+            <div style="background: var(--light); padding: 40px; border-radius: 20px;">
+                <ul class="feature-list">
+                    <li><strong>Otomatik Numaralandırma:</strong> Gelen (GEL-) ve Giden (GID-) yazılar için ayrı, yıl
+                        bazlı şablonlar.</li>
+                    <li><strong>Kanban Yönetimi:</strong> Yazışmaların durumunu (Taslak, Gönderildi, Cevaplandı) görsel
+                        olarak takip edin.</li>
+                    <li><strong>Kurum Entegrasyonu:</strong> Yazışmaları direkt Odoo Rehberinizdeki (Partner) kurumlarla
+                        ilişkilendirin.</li>
+                    <li><strong>Chatter Entegrasyonu:</strong> Yazışma üzerine notlar alın, iş arkadaşlarınızı
+                        etiketleyin.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>Yardım mı lazım?</h3>
+            <p>Destek ve özellik talepleriniz için bize ulaşın: <a
+                    href="mailto:support@7dimensions.eu">support@7dimensions.eu</a></p>
+            <p style="margin-top: 20px; opacity: 0.7;">© 2025 7Dimensions. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+
+</html>

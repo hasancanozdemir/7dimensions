@@ -47,3 +47,8 @@
 	path = 7Dimensions-Project/testparod
 	url = git@github.com:7Dimensions-Project/testparod.git
 	branch = 19.0
+
+[submodule "7Dimensions-Project/testparod"]
+	path = 7Dimensions-Project/testparod
+	url = git@github.com:7Dimensions-Project/testparod.git
+	branch = 19.0

@@ -2,3 +2,8 @@
 	path = 7Dimensions-Project/parasut_odo
 	url = git@github.com:7Dimensions-Project/parasut_odo.git
 	branch = 19.0
+
+[submodule "7Dimensions-Project/parasut_odo"]
+	path = 7Dimensions-Project/parasut_odo
+	url = git@github.com:7Dimensions-Project/parasut_odo.git
+	branch = 19.0
